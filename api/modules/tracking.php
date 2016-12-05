@@ -32,7 +32,7 @@
 			                <!-- <button class="btn btn-primary btn-sm" onclick="ubah('<?php echo $r['customercode'] ?>','<?php echo $r['nama'] ?>')">Ubah</button> 
 			                <button class="btn btn-danger btn-sm" onclick="hapus('<?php echo $r['customercode'] ?>')">Hapus</button>-->
 			                <button class="btn btn-default btn-sm" onclick="sendMail('<?php echo $r['email'] ?>', '<?php echo $r['noresi'] ?>')"><i class="fa fa-envelope"></i></button>
-			                <button class="btn btn-default btn-sm" onclick=""><i class="fa fa-phone"></i></button>
+			                <!-- <button class="btn btn-default btn-sm" onclick=""><i class="fa fa-phone"></i></button> -->
 			              </td>
 			              <td><button class="btn btn-default btn-sm" onclick="ubahStatus('<?php echo $r['id'] ?>','<?php echo $r['progress'] ?>')"><i class="fa fa-edit"></i></button></td>
 			            </tr>
@@ -67,6 +67,7 @@
 			            ?>
             		</select>
             		<input type="hidden" name="id" id="id">
+            		<input type="hidden" name="before_ps" id="before_ps">
             	</div>
             </div>
             <div class="modal-footer">
@@ -109,7 +110,8 @@
 		$("#id").val(id);
 		if( prs > 0){
 			$('select[name="progress"]').val(prs);
-		}
+		} 
+		$('#before_ps').val(prs)
 	}
 
 	function updateProgress(){
@@ -149,4 +151,21 @@
 
 		$("#myModalInfo").modal("show");
 	}
+
+	$(document).ready(function(){
+		
+		$('select[name="progress"]').on("change", function(){
+			var before_ps = $("#before_ps").val();
+			if( $(this).val() < before_ps ){
+				var psn = confirm("Proses pengerjaan mundur dari sebelumnya, anda yakin akan mundur?")
+				if(psn){
+					$('select[name="progress"]').val( $(this).val() );
+				} else {
+					$('select[name="progress"]').val( before_ps );
+				}
+			}
+
+			console.log( before_ps )
+		})
+	})
 </script>

@@ -140,3 +140,44 @@ span.round-tab:hover {
 
     }
 }
+
+
+/* ========================
+    Set color untuk proses
+   =========================== */
+.survei { /* survei warna kuning */
+    background-color: #FEFE02;
+    height: 70px;
+}
+.cutting { /* cutting warna orange */
+    background-color: #FDC003;
+    height: 70px;
+}
+.aplikasi { /* aplikasi warna hijau muda */
+    background-color: #91CF50;
+    height: 70px;
+}
+.jahit { /* Jahit warna hijau */
+    background-color: #00B04D;
+    height: 70px;
+}
+.qc { /* QC warna warna muda */
+    background-color: #00AFED;
+    height: 70px;
+}
+.distribusi { /* distribusi warna biru */
+    background-color: #0070BE;
+    height: 70px;
+}
+.perbaikan { /* perbaikan warna merah */
+    background-color: #FB0100;
+    height: 70px;
+}
+
+.small {
+    display: inline-block;
+    height: auto;
+    padding: 3px 5px;
+    font-size: 12px;
+    font-weight: bold;
+}

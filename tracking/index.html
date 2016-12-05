@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tracking Order - Gesit Konveksi</title>
+	<script type="text/javascript" src="js/jquery-2.2.4.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+	<link rel="shortcut icon" href="gesit-fav.png" type="image/x-icon" />
+	<style media="screen">
+		@-ms-viewport     { width: device-width; }
+		@-o-viewport      { width: device-width; }
+		@viewport         { width: device-width; }
+
+		.radius {
+			align :center;
+			width: 120px;
+			text-align: center;
+		}
+		.radius .fa {
+			border:1px solid #e9e9e9;
+			border-radius:50%;
+			padding: 20px;
+			background-color: #DE148A;
+			color: #FFDB05;
+		}
+		.radius span {
+			padding-top: 10px;
+			font-weight: bold;
+			font-family: sans-serif;
+			color: #00A6FA;
+		}
+		.right {
+			float: right;
+		}
+		.left {
+			float: left;
+		}
+		.radius a:hover {
+			text-decoration: none;
+		}
+		.radius a:hover > .fa{
+			background-color: #0D33AB;
+		}
+		.social ul {
+			padding: 0;
+			margin: 0;
+		}
+		.social li {
+			display: inline-block;
+		}
+		.social li a {
+			padding:5px;
+		}
+		h4 {
+			font-weight: bold;
+		}
+
+		.produk ul {
+			padding: 0;
+			margin: 0;
+		}
+		.produk li {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+		<div class="container"><br>
+			<div class="row">
+		      <div class="col-md-12 col-sm-12 col-xs-12" align="center">
+					     <img src="Logo-Gesit.png" class="img-responsive">
+		      </div>
+			</div><br><br>
+
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-sm-6">
+					<div class="radius right">
+						<a href="cekresi">
+							<i class="fa fa-truck fa-4x"></i><br>
+							<span>Tracking Order</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-6 col-sm-6">
+					<div class="radius left">
+						<a href="form">
+							<i class="fa fa-edit fa-4x"></i><br>
+							<span>Form Order</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<br><br>
+    </div> <!-- /container -->
+    <footer class="footer" style="background-color: #1E3278; color:#fff;">
+	<!-- <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: #00A6FA"> -->
+		<div class="container" >
+			
+			<div class="col-md-6 col-sm-6 col-xs-6 left">
+			<!-- <h4 class="nama"></h4>
+			<p class="alamat"></p><br>
+			<h4>Call Center</h4>
+			<h5><i class="fa fa-phone"></i> <span class="phone"></span></h5>
+			<h5>PIN BB : <span class="bbm"></span></h5>
+			<h5><i class="fa fa-envelope"></i> <span class="email"></span></h5> -->
+			<div class="text_isi"></div>
+			<ul class="social">
+				<li><a style="color: #fff;" class="fb" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+				<li><a style="color: #fff;" class="tw" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
+				<li><a style="color: #fff;" class="ig" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
+			</ul>
+			<br>
+			</div>
+			
+			<div class="col-md-6 col-sm-6 col-xs-6 right produk" >
+				<h4>Melayani Pembuatan :</h4>
+				<ul>
+					<li>Kaos - Kemeja</li>
+					<li>Jaket - Topi</li>
+				</ul>
+
+			</div>
+		</div>
+	<!-- </div> -->
+	</footer>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				// var path_server = 'http://api.gesitkonveksi.co.id/main.php';
+				var path_server = 'http://localhost/gesitkonveksi/main.php';
+				 $.post(path_server, {op:'pengaturan'}, function(data){
+				 	//$(".phone").text(data[0].phone);
+				 	//$(".email").text(data[0].email);
+				 	$("a.fb").attr("href",data[0].fb);
+				 	$("a.tw").attr("href",data[0].tw);
+				 	$("a.ig").attr("href",data[0].ig);
+				 	$(".text_isi").html(data[0].text_isi);
+				 	//$(".nama").text(data[0].nama);
+				 	//$(".bbm").text(data[0].bbm);
+				 });
+			})
+		</script>
+</body>
+</html>

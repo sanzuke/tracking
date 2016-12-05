@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tracking Order - Gesit Konveksi</title>
+	<script type="text/javascript" src="js/jquery-2.2.4.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+<!--<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>-->
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+	<link rel="shortcut icon" href="gesit-fav.png" type="image/x-icon" />
+	<style media="screen">
+		@-ms-viewport     { width: device-width; }
+		@-o-viewport      { width: device-width; }
+		@viewport         { width: device-width; }
+	</style>
+</head>
+<body>
+		<div class="container"><br>
+			<div class="row">
+	      <div class="col-md-12 col-sm-12 col-xs-12" align="center">
+				     <img src="Logo-Gesit.png" class="img-responsive">
+	      </div>
+			</div><br>
+      <form class="form-tracking">
+        <h2 class="form-signin-heading">Masukan No. Resi </h2>
+        <label for="inputEmail" class="sr-only">No. Resi</label>
+        <input type="text" name="noresi" id="noresi" class="form-control" placeholder="No. Resi" required autofocus>
+        <input type="hidden" name="op" value="cekresi" >
+<!-- <div class="g-recaptcha" data-sitekey="6LfeuAoUAAAAAM-km_seZZKPqGxRpJ7WxYliLytc" align="center"></div>-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Cari</button>
+      </form>
+
+    </div> <!-- /container -->
+
+		<script type="text/javascript">
+      var path_server = 'http://api.gesitkonveksi.co.id/main.php';
+			$(document).ready(function(){
+				$(".form-tracking").submit(function(){
+					$('.btn').html('<i class="fa fa-spin fa-spinner"></i> Loading...');
+			          $.post(path_server, $(this).serialize(), function(data){
+			            if(data[0].status === 'true' || data[0].status === true){
+			              localStorage.setItem('auth_token', data[0].auth_token);
+			              $.cookie('auth_token', data[0].auth_token);
+			              $.cookie('resi', data[0].noresi);
+
+			              window.location = 'tracking.html';
+			            }
+			          });
+					return false;
+				})
+			})
+		</script>
+</body>
+</html>
